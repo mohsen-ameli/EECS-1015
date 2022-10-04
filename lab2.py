@@ -38,14 +38,17 @@ task2()
 # task 3
 print("\n---- Task 3: Substring highlighter ----")
 def task3():
-    long_str = str(input("Type a sentence at the prompt below: "))
-    sub_str = str(input("Enter substring below to highlight: "))
+    print("Type a sentence at the prompt below:")
+    long_str = str(input("> "))
+    print("Enter substring below to highlight:")
+    sub_str = str(input("> "))
     print(f"Sentence has {len(long_str)} characters, substring has {len(sub_str)} characters.")
     
     firstIndex = long_str.find(sub_str)
     lastIndex = firstIndex + len(sub_str)
     sliced = slice(firstIndex, lastIndex)
-    print(f"Substring highlighted: \n{long_str[:firstIndex]} *{long_str[sliced].upper()}* {long_str[lastIndex:]}")
+    print("Substring highlighted:")
+    print(f"> {long_str[:firstIndex]}*{long_str[sliced].upper()}*{long_str[lastIndex:]}")
 task3()
 
 # task 4
