@@ -5,7 +5,7 @@
 # Sudent id: 219705755
 #########
 
-from random import random, randrange
+from random import randrange
 
 
 print("---- Lab 3 ----")
@@ -30,7 +30,7 @@ def task1():
 
     selection = int(input("Selection: "))
     
-    if selection == (1 or 5):
+    if selection == 1 or selection == 5:
         price = 1
     elif selection == 2:
         price = 2.5
@@ -49,13 +49,13 @@ def task1():
     age = str(input("Selection age: ")).upper()
 
     if age == "C":
-        discount = .5
+        discount = .5 * price
     elif age == "S":
-        discount = .25
+        discount = .25 * price
     elif age == "A":
         discount = 0
     else:
-        discount = -.25
+        discount = -.25 * price
 
     print(f"Amount    ${price:6.2f}")
     if price != 0:
