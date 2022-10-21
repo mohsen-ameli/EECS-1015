@@ -7,9 +7,6 @@
 # Email: noobmoe@my.yorku.ca
 ################################
 
-# declaring the get_input with an extra argument int_or_float so I can share it in task1, task2, and task3. Also the way I did task4 might not be what prof's asking.
-
-
 from random import randrange
 from time import sleep
 
@@ -40,33 +37,45 @@ def get_input(prompt, min, max, int_or_float):
         if user_input >= min and user_input <= max:
             return user_input
 
-def task1():
-    def get_yes():
-        while True:
-            user_input = str(input("Randomize [Y/N]? ")).upper()
-            if user_input == "Y":
-                return True
-            elif user_input == "N":
-                return False
-    
-    def draw_owl(position, randomize=False):
-        spaces = " " * position
+def get_yes(prompt):
+    while True:
+        user_input = str(input(prompt)).upper()
+        if user_input == "Y":
+            return True
+        elif user_input == "N":
+            return False
 
-        if randomize:
-            rand = randrange(1, 4)
-            if rand == 1:
-                print(f"{spaces}{eye1}")
-            elif rand == 2:
-                print(f"{spaces}{eye2}")
-            elif rand == 3:
-                print(f"{spaces}{eye3}")
-        else:
+def draw_owl(position, randomize=False):
+    # Movement
+    spaces = " " * position
+
+    # Owl head
+    if randomize:
+        rand = randrange(1, 4)
+        if rand == 1:
             print(f"{spaces}{eye1}")
-        print(f"{spaces}{body} \n{spaces}{feet}")
+        elif rand == 2:
+            print(f"{spaces}{eye2}")
+        elif rand == 3:
+            print(f"{spaces}{eye3}")
+    else:
+        print(f"{spaces}{eye1}")
+
+    # Rest of owl
+    print(f"{spaces}{body} \n{spaces}{feet}")
+
+def compute_return(amount, rate, years):
+    new_amount = amount
+
+    for i in range(int(years)):
+        new_amount = new_amount + (new_amount * rate)
     
-    N = get_input("How many times to move [2-20]? ", 2, 20, "int")
+    return new_amount
+
+def task1():
+    N = (get_input("How many times to move [2-20]? ", 2, 20, "int"))
     T = get_input("How long to delay [1-1000ms]? ", 1, 1000, "int")
-    randomize = get_yes()
+    randomize = get_yes("Randomize [Y/N]? ")
 
     for i in range(N):
         draw_owl(i, randomize)
@@ -75,27 +84,19 @@ def task1():
 def task2():
     again = True
 
-    def compute_return(amount, rate, years):
-        new_amount = amount
-
-        for i in range(int(years)):
-            new_amount = new_amount + (new_amount * rate / 100)
-            print(new_amount)
-        
-        return new_amount
-
     while again:
         amount = get_input("Input initial investment amount [1, 10000]? ", 1, 10000, "float")
         rate = get_input("Annual return rate [0-1]? ", 0, 1, "float")
-        years = get_input("How many years [1-10]? ", 1, 10, "float")
+        years = get_input("How many years [1-10]? ", 1, 10, "int")
 
         return_value = compute_return(amount, rate, years)
 
-        print(f"Return in 5 years is: ${return_value:10.2f}")
+        if years == 1:
+            print(f"Return in {years} year is: ${return_value:10.2f}")
+        else:
+            print(f"Return in {years} years is: ${return_value:10.2f}")
 
-        again_input = str(input("Compute new investment [Y/N]? "))
-        if again_input.upper() == "N":
-            again = False
+        again = get_yes("Compute new investment [Y/N]? ")
 
 def task3():
     max = 1

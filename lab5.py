@@ -7,8 +7,6 @@
 # Email:  noobmoe@my.yorku.ca
 ################################
 
-import random
-
 # Print info
 def print_lab_info():
     print("---- Lab 5 ----")
