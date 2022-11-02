@@ -18,8 +18,8 @@ eye3 = '{o,-}'
 body = '/)_) '
 feet = ' " " '
 
-frame1 = "  o   \n /|\  \n / \  "
-frame2 = " \o/  \n  |   \n / \  "
+frame1 = "  o   \n /|\  \n | |  "
+frame2 = " \o/  \n  |   \n / \  " #odd
 
 
 def print_student_info():
@@ -114,7 +114,7 @@ def task4():
     input(f"Press enter to perform {num_of_jumps} jumping jacks.")
 
     for i in range(num_of_jumps):
-        if i % 2 == 0:
+        if i % 3 == 0:
             for a in frame2.split("\n"):
                 if a == ' \\o/  ':
                     print(f"{a} [  {i+1}]")
@@ -126,14 +126,15 @@ def task4():
                     print(f"{a} [  {i+1}]")
                 else:
                     print(a)
+        sleep(0.3)
 
 def main():
     print_student_info()
 
     print("\n---- Task 1: The Owl ----")
-    task1()
+    # task1()
     print("\n---- Task 2: Compound investment ---")
-    task2()
+    # task2()
     print("\n---- Task 3: Max odd number ----")
     task3()
     print("\n---- Task 4: Jumping Jacks ----")

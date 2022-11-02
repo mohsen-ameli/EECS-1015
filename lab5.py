@@ -8,13 +8,15 @@
 ################################
 
 # Print info
+from random import randint
+
+
 def print_lab_info():
     print("---- Lab 5 ----")
     print("Name: Mohsen Ameli")
     print("Section A")
     print("Student id: 219705755")
     print("Email: noobmoe@my.yorku.ca")
-
 
 def task0():
   # Example of calling a function from taskX() functions.
@@ -90,9 +92,112 @@ def task3():
      '0': 'L', '@': 'M', '[': 'N', 'L': 'O', '%': 'P', '&': 'Q', '(': 'R', 'G': 'S', 'K': 'T', '5': 'U', '!': 'V',
      '^': 'W', '+': 'X', '6': 'Y', '-': 'Z', 'H': '1', 'A': '2', 'J': '3', '7': '4', '4': '5', 'D': '6', 'E': '7',
      '9': '8', ')': '9', ';': '0', '3': ',', '/': '.', '_': ' '}
+  again = "Y"
+
+  while again == "Y":
+    user_str = str(input("Input message: ")).upper()
+    encode_or_decode = str(input("Encode (E) or Decode (D)? ")).upper()
+
+    if encode_or_decode == "E":
+      encoded = []
+      print("Encoded message: ")
+
+      # Filling up encoded
+      for char in user_str:
+        if char in encoder:
+          encoded += encoder[char]
+        else:
+          encoded = ""
+          break
+
+      # If encoded is empty
+      if encoded == "":
+        print("Invalid input")
+      else:
+        encoded = "".join(encoded)
+        print(encoded)
+    else:
+      decoded = []
+      print("Decoded message: ")
+
+      for char in user_str:
+        if char in decoder:
+          decoded += decoder[char]
+        else:
+          decoded = ""
+          break
+
+      if decoded == "":
+        print("Invalid input")
+      else:
+        decoded = "".join(decoded)
+        print(decoded)
+    
+    print()
+    
+    again = str(input("Encode/decode again [Y/N]? ")).upper()
+
+def random_set():
+  r = set()
+  i = 0
+
+  while i in range(5):
+    rand = randint(1, 20)
+    if rand not in r:
+      r.add(rand)
+      i += 1
+
+  return r
+  
+def print_set(aSet, prompt=""):
+  print(prompt, end="")
+  for item in aSet:
+    print(item, end=" ")
 
 def task4():
-  pass
+  again = "Y"
+
+  while again == "Y":
+    num_again = True
+    user_guess = set()
+    correct_guess = set()
+
+    while num_again:
+      # getting user's input
+      user_input = str(input("Enter 5 numbers between 1-20: "))
+
+      # splitting user's input by spaces
+      num_list = user_input.split(" ")
+
+      # converting user's input to a numbered list
+      num_list = list(map(int, num_list))
+
+      # updating our set for user's guess
+      user_guess = set(num_list)
+      
+      # if user inputed the wrong values
+      input_len = len(user_guess)
+      if input_len == 5:
+        num_again = False
+
+    # generate computer's numbers
+    aSet = random_set()
+    print_set(aSet, prompt="Computer's numbers: ")
+
+    print()
+
+    # checking to see if user got any correct guesses
+    for num in aSet:
+      if num in user_guess:
+        correct_guess.add(str(num))
+
+    # printing results
+    if len(correct_guess) > 0:
+      print(f"{len(correct_guess)} matches found:", " ".join(correct_guess))
+    else:
+      print("No matches haha!")
+
+    again = str(input("Try again [Y/N]? ")).upper()
 
 
 def main():
@@ -100,7 +205,7 @@ def main():
     task0()
 
     print("\n---- Task 1: List average ----")
-    # task1()
+    task1()
 
     print("\n---- Task 2: Character count graph ----")
     task2()
