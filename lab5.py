@@ -133,8 +133,6 @@ def task3():
         decoded = "".join(decoded)
         print(decoded)
     
-    print()
-    
     again = str(input("Encode/decode again [Y/N]? ")).upper()
 
 def random_set():
@@ -164,7 +162,7 @@ def task4():
 
     while num_again:
       # getting user's input
-      user_input = str(input("Enter 5 numbers between 1-20: "))
+      user_input = str(input("Enter 5 numbers between 1-20: ")).strip()
 
       # splitting user's input by spaces
       num_list = user_input.split(" ")
@@ -179,6 +177,10 @@ def task4():
       input_len = len(user_guess)
       if input_len == 5:
         num_again = False
+
+      for num in user_guess:
+        if num not in range(1, 21):
+          num_again = True
 
     # generate computer's numbers
     aSet = random_set()
