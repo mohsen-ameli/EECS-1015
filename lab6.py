@@ -210,13 +210,13 @@ def task4():
     Main
 '''
 def main():
-    # task0()
+    task0()
     print("\n--- Task 1: Average numbers ---")
-    # task1()
+    task1()
     print("\n--- Task 2: Text to dictionary---")
-    # task2()
+    task2()
     print("\n--- Task 3: Deleting from list---")
-    # task3()
+    task3()
     print("\n--- Task 4: RLE decoding  ---")
     task4()
 
