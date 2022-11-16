@@ -14,7 +14,7 @@ from random import randrange
     Task 0
 '''
 def task0():
-    print("---- Lab 5 ----")
+    print("---- Lab 6 ----")
     print("Name: Mohsen Ameli")
     print("Section A")
     print("Student id: 219705755")
@@ -25,11 +25,11 @@ def task0():
     Task 1
 '''
 def average_num(*nums):
-    avg = 0
-    for i in nums:
-        avg += i
-    
-    return avg / len(nums)
+    len_nums = len(nums)
+
+    if len_nums == 0:
+        return 0
+    return sum(nums) / len_nums
 
 def task1():
     user_input = None
@@ -50,16 +50,7 @@ def task1():
             numbers = user_input.split(",")
             numbers = list(map(int, numbers))
             
-            x1 = numbers[0]
-            x2 = numbers[1]
-            x3 = numbers[2]
-            x4 = numbers[3]
-            if num_range == 5:
-                x5 = numbers[4]
-                avg = average_num(x1, x2, x3, x4, x5)
-            else:
-                avg = average_num(x1, x2, x3, x4)
-
+            avg = average_num(*numbers)
             print(f"Average is {avg:.2f}")
 
         loop = str(input("Try again? ")).strip().upper()
@@ -172,8 +163,8 @@ def uncompress_rle_image(rle_image):
         local = []
         for run in step:
             local.append(run[0] * run[1])
-
-        string = "".join(local)
+        
+        string = "".join(local)        
         _list.append(string)
     
     return _list
